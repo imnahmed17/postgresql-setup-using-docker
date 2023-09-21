@@ -38,11 +38,11 @@ INSERT INTO Student
 (Student_id, Student_name, Student_age, Student_address)
 VALUES  
 (1, 'Anderson', 14, 'Dhaka'),
-(2, 'Smith', 12, 'Khulna');
+(2, 'Smith', 12, 'Khulna'),
 (3, 'Jack', 15, 'Rajshahi');
 ```
 
-**Database backup:**
+**Backup database:**
 
 To backup your database, right click on your database name select `Backup...`. Then click on the file icon. Type any name (ex:- new) and save it as sql format.
 
@@ -64,10 +64,32 @@ ls
 rm -f file_name
 rm -rf "folder name"
 ```
+Then leave the container:
+```bash
+ctrl d
+```
+or
+```bash
+exit
+```
 Ex:-
 ```bash
 docker exec -it 79298332506d sh
 cd /var/lib/pgadmin/storage/admin_user.com
 ls
 rm -f new.sql
+ctrl d
 ```
+
+**Copy database backup file from local to container:**
+```bash
+docker cp src_file container_id:/target_path/src_file
+```
+Ex:-
+```bash
+docker cp new.sql 79298332506d:/var/lib/pgadmin/storage/admin_user.com/new.sql
+```
+
+**Restore database:**
+
+To restore your database, right click on your database name select `Restore...`. Then click on the file icon and select `new.sql`.
